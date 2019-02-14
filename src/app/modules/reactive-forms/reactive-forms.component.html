@@ -1,0 +1,96 @@
+<mat-card class="example-form">
+	<mat-card-title>
+		<span>Registration Form</span>
+		<hr>
+	</mat-card-title>
+
+	<mat-card-content>
+	<form [formGroup]="registrationForm">
+
+			<mat-form-field class="example-full-width" appearance="outline">
+				<mat-label>Username</mat-label>
+				<input
+					formControlName="userName"
+					type="text"
+					matInput
+					placeholder="Enter your username">
+				<mat-icon matSuffix>perm_identity</mat-icon>
+				<mat-error *ngIf="this.registrationForm.get('userName').errors?.required">Username is required</mat-error>
+				<mat-error *ngIf="this.registrationForm.get('userName').errors?.minlength">Username is at least 3 characters</mat-error>
+				<mat-error *ngIf="this.registrationForm.get('userName').errors?.forbiddenName">{{userName.errors?.forbiddenName.value}} username not allowed</mat-error>
+			</mat-form-field>
+
+			<mat-form-field class="example-full-width" appearance="outline">
+				<mat-label>Password</mat-label>
+				<input
+					formControlName="password"
+					type="password"
+					matInput
+					placeholder="Enter your password">
+				<mat-icon matSuffix>lock</mat-icon>
+				<mat-error *ngIf="this.registrationForm.get('password').hasError('required')">Password is required</mat-error>
+			</mat-form-field>
+
+			<mat-form-field class="example-full-width" appearance="outline">
+				<mat-label>Confirm password</mat-label>
+				<input
+					formControlName="confirmPassword"
+					type="password"
+					matInput
+					placeholder="Confirm your password"
+					[errorStateMatcher]="errorMatcher">
+				<mat-icon matSuffix>lock</mat-icon>
+				<mat-error *ngIf="this.registrationForm.get('confirmPassword').hasError('required') && !this.registrationForm.hasError('misMatch')">Confirm password is required</mat-error>
+				<mat-error *ngIf="this.registrationForm.hasError('misMatch')">Passwords do not match</mat-error>
+			</mat-form-field>
+
+			<br>
+
+			<div formGroupName="address">
+
+				<h4>Address</h4>
+
+				<mat-form-field class="example-full-width" appearance="outline">
+					<mat-label>City</mat-label>
+					<input
+						formControlName="city"
+						type="text"
+						matInput
+						placeholder="Enter the name of your city">
+						<mat-icon matSuffix>navigation</mat-icon>
+				</mat-form-field>
+
+				<mat-form-field class="example-full-width" appearance="outline">
+					<mat-label>State</mat-label>
+					<input
+						formControlName="state"
+						type="text"
+						matInput
+						placeholder="Enter the name of your state">
+						<mat-icon matSuffix>map</mat-icon>
+				</mat-form-field>
+
+				<mat-form-field class="example-full-width" appearance="outline">
+					<mat-label>Postal Code</mat-label>
+					<input
+						formControlName="postalCode"
+						type="text"
+						matInput
+						placeholder="Enter your postal code">
+					<mat-icon matSuffix>my_location</mat-icon>
+				</mat-form-field>
+
+			</div>
+
+			<br>
+			<button class="button" mat-raised-button color="primary">Submit</button>
+			<button class="button" mat-raised-button color="accent" (click)="loadApiData()">Load API data</button>
+			
+	</form>
+	</mat-card-content>
+
+</mat-card>
+
+<mat-card class="example-form">
+	{{registrationForm.value | json}}
+</mat-card>

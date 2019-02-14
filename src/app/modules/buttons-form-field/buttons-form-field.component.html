@@ -1,0 +1,95 @@
+<mat-card *ngIf="!submited" class="mat-elevation-z8 example-form">
+
+	<form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)" novalidate>
+
+		<mat-card-title>
+			<mat-icon>description</mat-icon>
+			<span>Bootcamp Enrollment Form</span>
+		</mat-card-title>
+
+		<mat-divider></mat-divider>
+
+		<mat-card-content>
+
+			<label><h4>Name</h4></label>
+			<mat-form-field class="example-full-width">
+				<input
+					matInput
+					required
+					mat-error="true"
+					placeholder="Enter your name"
+					name="name"
+					#name="ngModel"
+					[(ngModel)]="userModel.name">
+				<mat-error>Name is required</mat-error>
+			</mat-form-field>
+
+			<label><h4>E-mail</h4></label>
+			<mat-form-field class="example-full-width">
+				<input
+					type="email"
+					email
+					required
+					matInput
+					#email="ngModel"
+					placeholder="Enter your e-mail"
+					name="email"
+					[(ngModel)]="userModel.email">
+				<mat-error *ngIf="email.hasError('required')">E-mail is required</mat-error>
+				<mat-error *ngIf="email.hasError('email')">E-mail is invalid</mat-error>
+			</mat-form-field>
+
+			<label><h4>Phone</h4></label>
+			<mat-form-field class="example-full-width">
+				<input
+					type="tel"
+					required
+					#phone="ngModel"
+					pattern="^\d{10}$"
+					matInput
+					placeholder="Enter your phone"
+					name="phone"
+					[(ngModel)]="userModel.phone">
+				<mat-error *ngIf="phone.hasError('pattern')">Number needs 10 numeral digits</mat-error>
+				<mat-error *ngIf="phone.hasError('required')">Number is required</mat-error>
+			</mat-form-field>
+
+			<label><h4>I am interested in</h4></label>
+			<mat-form-field class="example-full-width">
+				<mat-select
+					name="topic"
+					[(ngModel)]="userModel.topic"
+					required
+					placeholder="Chose an option">
+					<mat-option *ngFor="let topic of topics" [value]="topic">{{topic}}</mat-option>
+				</mat-select>
+				<mat-error *ngIf="topic.hasError('required')">Chose an option</mat-error>
+			</mat-form-field>
+
+			<label><h4>Turn</h4></label>
+			<mat-radio-group
+				class="example-radio-group"
+				name="timePreference"
+				required
+				#timePreference = "ngModel"
+				[(ngModel)]="userModel.timePreference"
+				placeholder="Chose an option">
+				<mat-radio-button class="example-radio-button" value="morning">Morning (9AM - 12PM)</mat-radio-button>
+				<br>
+				<mat-radio-button class="example-radio-button" value="evening">Evening (5PM - 8PM)</mat-radio-button>
+			</mat-radio-group>
+
+		</mat-card-content>
+
+		<mat-card-footer>
+			<mat-radio-group class="example-radio-group">
+				<mat-checkbox class="example-check-box" name="subscribe" [(ngModel)]="userModel.subscribe">Send me promotional offers</mat-checkbox>
+			</mat-radio-group>
+			<br>
+			<button [disabled]="userForm.form.invalid || submited" class="button" mat-raised-button color="primary">
+				Submit form
+			</button>
+		</mat-card-footer>
+	</form>
+
+</mat-card>

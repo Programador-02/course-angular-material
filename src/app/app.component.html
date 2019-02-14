@@ -1,0 +1,46 @@
+<mat-sidenav-container fullscreen>
+
+	<mat-sidenav #start>
+
+		<mat-toolbar color="primary">
+			<button mat-icon-button (click)="start.close()">
+				<mat-icon>menu</mat-icon>
+			</button>
+			<span>Felipe Tadeu</span>
+		</mat-toolbar>
+
+		<mat-nav-list>
+			<a mat-list-item routerLink="/buttons-form-field">
+				<mat-icon>description</mat-icon>
+				<span>Butons Form Field</span>
+			</a>
+		</mat-nav-list>
+
+		<mat-nav-list>
+			<a mat-list-item routerLink="/forms-angular-material">
+				<mat-icon>credit_card</mat-icon>
+				<span>Forms Angular Material</span>
+			</a>
+		</mat-nav-list>
+
+		<mat-nav-list>
+			<a mat-list-item routerLink="/reactive-forms">
+				<mat-icon>dashboard</mat-icon>
+				<span>Reactive Forms</span>
+			</a>
+		</mat-nav-list>
+	</mat-sidenav>
+
+	<mat-toolbar color="primary">
+		<button mat-icon-button (click)="start.open()">
+			<mat-icon>menu</mat-icon>
+		</button>
+		<span>Felipe Tadeu</span>
+	</mat-toolbar>
+
+	<section>
+		<router-outlet></router-outlet>
+		<router-outlet name="modal"></router-outlet>
+	</section>
+
+</mat-sidenav-container>
