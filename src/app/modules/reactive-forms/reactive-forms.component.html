@@ -5,7 +5,7 @@
 	</mat-card-title>
 
 	<mat-card-content>
-	<form [formGroup]="registrationForm">
+	<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
 
 			<mat-form-field class="example-full-width" appearance="outline">
 				<mat-label>Username</mat-label>
@@ -17,9 +17,39 @@
 				<mat-icon matSuffix>perm_identity</mat-icon>
 				<mat-error *ngIf="this.registrationForm.get('userName').errors?.required">Username is required</mat-error>
 				<mat-error *ngIf="this.registrationForm.get('userName').errors?.minlength">Username is at least 3 characters</mat-error>
-				<mat-error *ngIf="this.registrationForm.get('userName').errors?.forbiddenName">{{userName.errors?.forbiddenName.value}} username not allowed</mat-error>
+				<mat-error *ngIf="this.registrationForm.get('userName').errors?.forbiddenName">'{{this.registrationForm.get('userName').errors?.forbiddenName.value}}' not allowed</mat-error>
 			</mat-form-field>
 
+			<button mat-raised-button type="button" color="accent" (click)="addAlternateEmail()">Add e-mail</button>
+			<mat-form-field class="example-full-width" appearance="outline">
+				<mat-label>E-mail</mat-label>
+				<input
+					formControlName="email"
+					matInput
+					email
+					placeholder="Enter your e-mail">
+				<mat-icon matSuffix>email</mat-icon>
+				<mat-error *ngIf="this.registrationForm.get('email').hasError('required')">E-mail is required</mat-error>
+				<mat-error *ngIf="this.registrationForm.get('email').hasError('email')">Not a valid e-mail</mat-error>
+			</mat-form-field>
+
+			<mat-form-field formArrayName="alternateEmails" *ngFor="let email of alternateEmails.controls; let i = index" class="example-full-width" appearance="outline">
+				<input
+					matInput
+					email
+					[formControlName]="i"
+					placeholder="Enter another e-mail">
+					<mat-error *ngIf="email.hasError('email')">Not a valid e-mail</mat-error>
+				<mat-icon matSuffix>email</mat-icon>
+			</mat-form-field>
+
+			<div class="checkbox-full-width">
+				<mat-checkbox
+					formControlName="subscribe">
+					Send me promotional offers
+				</mat-checkbox>
+			</div>
+		
 			<mat-form-field class="example-full-width" appearance="outline">
 				<mat-label>Password</mat-label>
 				<input
@@ -83,8 +113,8 @@
 			</div>
 
 			<br>
-			<button class="button" mat-raised-button color="primary">Submit</button>
-			<button class="button" mat-raised-button color="accent" (click)="loadApiData()">Load API data</button>
+			<button [disabled]="registrationForm.invalid" class="button" mat-raised-button color="primary">Submit</button>
+			<button class="button" mat-raised-button color="accent" type="button" (click)="loadApiData()">Load API data</button>
 			
 	</form>
 	</mat-card-content>
