@@ -1,6 +1,6 @@
 import {NgModule} from "@angular/core";
 
-import {MatFormFieldModule} from '@angular/material/form-field';
+/*import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
@@ -13,40 +13,57 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatCardModule} from '@angular/material/card';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatDialogModule} from '@angular/material/dialog';
+import {MatDialogModule} from '@angular/material/dialog';*/
+import * as Material from "@angular/material";
 
 @NgModule({
   imports:[
-    MatFormFieldModule,
-    MatInputModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatMenuModule,
-    MatSidenavModule,
-    MatListModule,
-    MatSelectModule,
-    MatDividerModule,
-    MatCardModule,
-    MatRadioModule,
-    MatCheckboxModule,
-    MatDialogModule
+    Material.MatFormFieldModule,
+    Material.MatInputModule,
+    Material.MatToolbarModule,
+    Material.MatButtonModule,
+    Material.MatIconModule,
+    Material.MatMenuModule,
+    Material.MatSidenavModule,
+    Material.MatListModule,
+    Material.MatSelectModule,
+    Material.MatDividerModule,
+    Material.MatCardModule,
+    Material.MatRadioModule,
+    Material.MatCheckboxModule,
+    Material.MatDialogModule,
+    Material.MatGridListModule,
+    Material.MatDatepickerModule,
+    Material.MatNativeDateModule,
+    Material.MatSnackBarModule,
+    Material.MatTableModule,
+    Material.MatProgressSpinnerModule,
+    Material.MatPaginatorModule,
+    Material.MatSortModule
   ],
   exports:[
-    MatFormFieldModule,
-    MatInputModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatMenuModule,
-    MatSidenavModule,
-    MatListModule,
-    MatSelectModule,
-    MatDividerModule,
-    MatCardModule,
-    MatRadioModule,
-    MatCheckboxModule,
-    MatDialogModule
+    Material.MatFormFieldModule,
+    Material.MatInputModule,
+    Material.MatToolbarModule,
+    Material.MatButtonModule,
+    Material.MatIconModule,
+    Material.MatMenuModule,
+    Material.MatSidenavModule,
+    Material.MatListModule,
+    Material.MatSelectModule,
+    Material.MatDividerModule,
+    Material.MatCardModule,
+    Material.MatRadioModule,
+    Material.MatCheckboxModule,
+    Material.MatDialogModule,
+    Material.MatGridListModule,
+    Material.MatDatepickerModule,
+    Material.MatNativeDateModule,
+    Material.MatSnackBarModule,
+    Material.MatTableModule,
+    Material.MatProgressSpinnerModule,
+    Material.MatPaginatorModule,
+    Material.MatSortModule
   ]
 })
 
